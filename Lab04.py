@@ -1,9 +1,9 @@
-#  Wzorowane na przyk³adzie Rona Zacharskiego
+#  Wzorowane na przykÂ³adzie Rona Zacharskiego
 
 from math import sqrt
 import numpy as np
 
-# Mamy s³ownik users - zawiera on klucze i wartoœci (keys() i values())
+# Mamy sÂ³ownik users - zawiera on klucze i wartoÅ“ci (keys() i values())
 
 users = {
         "Ania": 
@@ -26,7 +26,7 @@ users = {
             "Vampire Weekend": 5.0}
         }
 
-#Funkcja obliczaj¹ca estymator wspó³czynnika korelacji
+#Funkcja obliczajÂ¹ca estymator wspÃ³Â³czynnika korelacji
 
 def pearson(rating1,rating2):
     x=rating1.values()
@@ -60,12 +60,12 @@ def pearson(rating1,rating2):
     korelacja=z1/(x4*y4)
     return korelacja
 
-print "Wspó³czynnik korelacji wynosi:"
+print "WspÃ³Â³czynnik korelacji wynosi:"
 print pearson(users["Ania"],users["Bonia"])
-#Estymator wyniós³ oko³o 0,8 co wskazuje na siln¹ zale¿noœæ (korelacjê)
-#gdy¿ jego wartoœæ jest mocno zbli¿ona do 1.
+#Estymator wyniÃ³sÂ³ okoÂ³o 0,8 co wskazuje na silnÂ¹ zaleÂ¿noÅ“Ã¦ (korelacjÃª)
+#gdyÂ¿ jego wartoÅ“Ã¦ jest mocno zbliÂ¿ona do 1.
 
-#Funckja manhattan do obliczania odleg³oœci manhattan
+#Funckja manhattan do obliczania odlegÂ³oÅ“ci manhattan
 def manhattan(rating1, rating2):
     klucze1 = rating1.keys()
     klucze2 = rating2.keys()
@@ -82,17 +82,16 @@ def manhattan(rating1, rating2):
     else:
         return -1
 
-print "Odleg³oœæ manhattan od Ani do Boni wynosi:"
+print "OdlegÂ³oÅ“Ã¦ manhattan od Ani do Boni wynosi:"
 print manhattan(users["Ania"],users["Bonia"])
 
-#Wspó³czynnik korelacji obliczony na podstawie biblioteki numpy
+#WspÃ³Â³czynnik korelacji obliczony na podstawie biblioteki numpy
 
 def pearsonNumpy(rating1,rating2):
     x=rating1.values()
     y=rating2.values()
 
-    a=array(x)
-    b=array(y)
+
     korelacjaNumpy=np.corrcoef([x,y])[0][1]
     return korelacjaNumpy
 
