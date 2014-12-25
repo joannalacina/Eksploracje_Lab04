@@ -26,76 +26,63 @@ users = {
             "Vampire Weekend": 5.0}
         }
 
-#Funkcja obliczaj¹ca estymator wspó³czynnika korelacji
+#Funkcja obliczaj¹ca wspó³czynnik korelacji (z zastosowaniem wzoru przybli¿aj¹cego)
 
-def pearson(rating1,rating2):
-    x=rating1.values()
-    y=rating2.values()
-      
-    xsr=sum(x)/len(x)
-    ysr=sum(y)/len(y)
-
-    x2=[]
-    x3=[]
-
-    y2=[]
-    y3=[]
-    z=[]
-
-    for i in x:
-        x2.append(i-xsr)
-        x3.append((i-xsr)**2)
-
-    for i in y:
-        y2.append(i-ysr)
-        y3.append((i-ysr)**2)
-
-    for i in range(0,len(x)):
-        z.append(x2[i]*y2[i])
-
-    z1=sum(z)
-    x4=sqrt(sum(x3))
-    y4=sqrt(sum(y3))
-            
-    korelacja=z1/(x4*y4)
-    return korelacja
-
-print "Wspó³czynnik korelacji wynosi:"
-print pearson(users["Ania"],users["Bonia"])
-#Estymator wyniós³ oko³o 0,8 co wskazuje na siln¹ zale¿noœæ (korelacjê)
-#gdy¿ jego wartoœæ jest mocno zbli¿ona do 1.
-
-#Funckja manhattan do obliczania odleg³oœci manhattan
-def manhattan(rating1, rating2):
+def pearson(rating1, rating2):
     klucze1 = rating1.keys()
     klucze2 = rating2.keys()
-    odleglosc = 0
+    nn=users["Ania"].values()
     udaloSiePorownac = False
+    
+
+    a=[]
+    b=[]
+    c=[]
+    d=[]
+    e=[]
 
     for klucz in klucze1:
         if klucz in rating2.keys():
             udaloSiePorownac = True
-            odleglosc = odleglosc + abs(rating2[klucz] - rating1[klucz])
+            a.append(rating1[klucz]*rating2[klucz])
+            b.append(rating1[klucz])
+            c.append(rating2[klucz])
+            d.append(rating1[klucz]**2)
+            e.append(rating2[klucz]**2)
 
-    if (udaloSiePorownac==True):
-        return odleglosc
-    else:
-        return -1
+        n=len(nn)
 
-print "Odleg³oœæ manhattan od Ani do Boni wynosi:"
-print manhattan(users["Ania"],users["Bonia"])
+        l1=sum(a)
+        l2=(sum(b)*sum(c))/n
+             
+        m1=sqrt(sum(d)-((sum(b)**2)/n))
+        m2=sqrt(sum(e)-((sum(c)**2)/n))
+               
+        
+    korelacja=(l1-l2)/(m1*m2)   
+
+    return korelacja
+
+
+print "Wspó³czynnik korelacji (obliczony na podstawie wzoru przybli¿aj¹cego) wynosi: "
+print pearson(users["Ania"],users["Bonia"])
+
+
 
 #Wspó³czynnik korelacji obliczony na podstawie biblioteki numpy
 
 def pearsonNumpy(rating1,rating2):
-    x=rating1.values()
-    y=rating2.values()
+    klucze10 = rating1.keys()
+    klucze20 = rating2.keys()
+    udaloSiePorownac = False
 
-    a=array(x)
-    b=array(y)
-    korelacjaNumpy=np.corrcoef([x,y])[0][1]
+        for klucz in klucze10:
+            if klucz in rating20.keys():
+                korelacjaNumpy=np.corrcoef([klucze10,klucze20])[0][1]
+                
     return korelacjaNumpy
 
+print "Wspó³czynnik korelacji (obliczony za pomoc¹ biblioteki Numpy) wynosi: "
 print pearsonNumpy(users["Ania"],users["Bonia"])
 
     
