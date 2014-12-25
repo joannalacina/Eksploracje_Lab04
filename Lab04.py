@@ -3,7 +3,6 @@
 from math import sqrt
 import numpy as np
 
-# Mamy s³ownik users - zawiera on klucze i wartoœci (keys() i values())
 
 users = {
         "Ania": 
@@ -26,7 +25,7 @@ users = {
             "Vampire Weekend": 5.0}
         }
 
-#Funkcja obliczaj¹ca wspó³czynnik korelacji (z zastosowaniem wzoru przybli¿aj¹cego)
+#Funkcja obliczajaca wspolczynnik korelacji (z zastosowaniem wzoru przyblizajacego)
 
 def pearson(rating1, rating2):
     klucze1 = rating1.keys()
@@ -49,7 +48,6 @@ def pearson(rating1, rating2):
             c.append(rating2[klucz])
             d.append(rating1[klucz]**2)
             e.append(rating2[klucz]**2)
-
         n=len(nn)
 
         l1=sum(a)
@@ -69,7 +67,7 @@ print pearson(users["Ania"],users["Bonia"])
 
 
 
-#Wspó³czynnik korelacji obliczony na podstawie biblioteki numpy
+#Korelacja - biblioteka numpy
 
 def pearsonNumpy(rating1,rating2):
     klucze10 = rating1.keys()
